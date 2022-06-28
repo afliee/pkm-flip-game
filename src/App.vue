@@ -1,11 +1,18 @@
 <template>
   <main-screen v-if="statusMatch === 'default'" @onStart="handleBeforeStart($event)"/>
-  <interac-screen v-if="statusMatch === 'match'" :cardsContext="settings.cardsContext"/>
+  <interac-screen v-if="statusMatch === 'match'" 
+  :cardsContext="settings.cardsContext"
+  @onFinish="onGetResult"
+  />
+  <result-screen v-if="statusMatch === 'result'"
+  :timer="timer"
+  @onStartAgain="statusMatch = 'default'"/>
 </template>
 
 <script>
 import MainScreenVue from './components/MainScreen.vue';
 import InteracScreenVue from './components/InteracScreen.vue';
+import ResultScreenVue from './components/ResultScreen.vue';
 
 import {shuffle}  from './utils/array.js';
 
@@ -19,11 +26,13 @@ export default {
         startedAt: null,
       },
       statusMatch: "default",
+      timer: 0,
     }
   },
   components: {
     mainScreen: MainScreenVue,
     interacScreen: InteracScreenVue,
+    resultScreen: ResultScreenVue,
   },
   methods: {
     handleBeforeStart(config) {
@@ -35,6 +44,10 @@ export default {
       this.settings.cardsContext = shuffle(shuffle(shuffle(shuffle(cards))));
       this.settings.startedAt = new Date().getTime();
       this.statusMatch = "match";
+    },
+    onGetResult() {
+      this.timer = new Date().getTime()- this.settings.startedAt;
+      this.statusMatch = "result";
     }
   }
 }
