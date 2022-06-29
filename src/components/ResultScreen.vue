@@ -1,7 +1,7 @@
 <template>
     <div class="screen">
         <h1>🎊 Congratulation 🎊</h1>
-        <p>{{ Math.round(timer/1000) }} seconds</p>
+        <p>{{ Math.round(timer/920) }} seconds</p>
         <button @click="onStartAgain">Start Again</button>
     </div>
 </template>
@@ -20,3 +20,48 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .screen {
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        background-color: var(--dark);
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .screen h1 {
+        font-size: 5rem;
+    }
+
+    .screen h3 {
+        margin-top: 1.5rem;
+        font-size: 3rem;
+    }
+
+    .screen button {
+        font: var(--font);
+        background: transparent;
+        box-shadow: none;
+        border: 1px solid var(--white);
+        color: var(--white);
+        margin: 1rem;
+        padding: 1rem 1.25rem;
+        border-radius: 0.5rem;
+        font-size: 1.25rem;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .screen button:hover {
+        background-color: var(--light);
+        color: var(--dark);
+    }
+</style>

@@ -7,6 +7,9 @@
   <result-screen v-if="statusMatch === 'result'"
   :timer="timer"
   @onStartAgain="statusMatch = 'default'"/>
+  <p class="copyright">
+    This game owned by Kunz in Vue - <a href="https://www.facebook.com/kunzz.3108/">learn more</a>
+  </p>
 </template>
 
 <script>
@@ -53,6 +56,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .copyright {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1.5rem;
+    color: var(--white);
+    z-index: 3;
+    font-size: 1.5rem;
+  }
 
+  .copyright a {
+    color: #f4dc26;
+  }
 </style>

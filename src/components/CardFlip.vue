@@ -6,7 +6,6 @@
             perspective: `${((((heigthBrowser - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) / 4) * 2}px`,
         }"
     >
-    {{heigthBrowser}}
         <div class="card__inner" :class="{'is-flipped': isFlipped}" @click="onToggleFlipCard()">
             <div class="card__face card__face--front">
                 <div class="card__content"
